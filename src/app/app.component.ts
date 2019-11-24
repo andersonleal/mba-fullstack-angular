@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'projeto-angular';
+  removerTitulo = false;
+
+
+  toggleRemoverTitulo() {
+    this.removerTitulo = !this.removerTitulo;
+  }
 }
