@@ -18,7 +18,7 @@ export class EditarComponent implements OnInit {
               private router: Router,
               private medicoService: MedicoService) {
     this.medico = route.snapshot.data.medico;
-    this.title = this.medico.id ? 'Atualizar Médico' : 'Cadastrat Médico';
+    this.title = this.medico.id ? 'Atualizar Médico' : 'Cadastrar Médico';
   }
 
   ngOnInit() {
