@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Medico} from '../../model/medico';
-import {NgForm} from '@angular/forms';
+import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {MedicoService} from '../../service/medico.service';
+import {Validacoes} from '../../../shared/validacoes';
 
 @Component({
   selector: 'app-editar',
@@ -14,7 +15,10 @@ export class EditarComponent implements OnInit {
   medico: Medico;
   title: string;
 
+  formulario: FormGroup;
+
   constructor(route: ActivatedRoute,
+              private formBuilder: FormBuilder,
               private router: Router,
               private medicoService: MedicoService) {
     this.medico = route.snapshot.data.medico;
@@ -22,17 +26,40 @@ export class EditarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.formulario = this.formBuilder.group({
+      nome: [this.medico.nome, Validators.compose([
+        Validators.required
+      ])],
+      email: [this.medico.email, Validators.compose([
+        Validators.required,
+        Validacoes.ValidaEmail
+      ])],
+      crm: [this.medico.crm, Validators.compose([
+        Validators.required
+      ])],
+    });
+  }
+
+  get nome() {
+    return this.formulario.get('nome');
+  }
+
+  get email() {
+    return this.formulario.get('email');
+  }
+
+  get crm() {
+    return this.formulario.get('crm');
   }
 
   voltar(): void {
     this.router.navigate(['..']);
   }
 
-  enviar(form: NgForm): void {
-    if (form.valid) {
+  enviar(): void {
+    if (this.formulario.valid) {
       this.medicoService.salvar(this.medico)
         .subscribe(() => this.voltar());
     }
   }
-
 }

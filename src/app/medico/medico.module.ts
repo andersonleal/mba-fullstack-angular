@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ListarComponent} from './components/listar/listar.component';
-import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {
   MatButtonModule,
   MatCardModule,
@@ -19,7 +19,7 @@ import { EditarComponent } from './components/editar/editar.component';
   declarations: [ListarComponent, EditarComponent],
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatTableModule,
     MatButtonModule,

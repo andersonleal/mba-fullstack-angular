@@ -7,18 +7,15 @@
 </mat-toolbar>
 
 <div class="edit">
-  <form #form="ngForm" class="mat-elevation-z3" (ngSubmit)="enviar(form)">
+  <form [formGroup]="formulario" class="mat-elevation-z3" (ngSubmit)="enviar()">
 
     <mat-form-field>
       <input type="text"
              matInput
-             required
              placeholder="Nome"
              name="nome"
-             #nome="ngModel"
-             [(ngModel)]="medico.nome">
-
-      <mat-error *ngIf="nome.invalid && form.submitted">
+             formControlName="nome">
+      <mat-error *ngIf="nome.errors?.required">
         Nome é obrigatório
       </mat-error>
     </mat-form-field>
@@ -26,29 +23,30 @@
     <mat-form-field>
       <input type="text"
              matInput
-             required
              placeholder="Email"
-             #email="ngModel"
-             name="email" [(ngModel)]="medico.email">
+             formControlName="email"
+             name="email">
 
-      <mat-error *ngIf="email.invalid && form.submitted">
+      <mat-error *ngIf="email.errors?.required">
         Email é obrigatório
+      </mat-error>
+      <mat-error *ngIf="email.errors?.emailInvalido">
+        Email inválido
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <input type="text"
              matInput
-             required
              placeholder="CRM"
              name="crm"
-             #crm="ngModel"
-             [(ngModel)]="medico.crm">
-      <mat-error *ngIf="crm.invalid && form.submitted">
+             formControlName="crm"
+      >
+
+      <mat-error *ngIf="crm.errors?.required">
         CRM é obrigatório
       </mat-error>
     </mat-form-field>
-
 
     <div class="action">
       <button mat-raised-button type="submit" color="primary">
