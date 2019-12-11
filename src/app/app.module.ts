@@ -6,7 +6,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MedicoModule} from './medico/medico.module';
-import {MedicoRoutingModule} from './medico/medico-routing.module';
+import {PacienteModule} from './paciente/paciente.module';
 
 @NgModule({
   declarations: [
@@ -15,10 +15,9 @@ import {MedicoRoutingModule} from './medico/medico-routing.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MedicoRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MedicoModule,
+    MedicoModule
   ],
   bootstrap: [AppComponent]
 })

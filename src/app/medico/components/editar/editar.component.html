@@ -31,7 +31,7 @@
         Email é obrigatório
       </mat-error>
       <mat-error *ngIf="email.errors?.emailInvalido">
-        Email inválido
+        Email inválido {{email.errors?.emailInvalido.descricao}}
       </mat-error>
     </mat-form-field>
 

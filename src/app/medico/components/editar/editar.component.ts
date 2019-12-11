@@ -28,7 +28,8 @@ export class EditarComponent implements OnInit {
   ngOnInit() {
     this.formulario = this.formBuilder.group({
       nome: [this.medico.nome, Validators.compose([
-        Validators.required
+        Validators.required,
+        Validators.maxLength(10)
       ])],
       email: [this.medico.email, Validators.compose([
         Validators.required,
@@ -37,6 +38,17 @@ export class EditarComponent implements OnInit {
       crm: [this.medico.crm, Validators.compose([
         Validators.required
       ])],
+    });
+
+    this.formulario.valueChanges
+      .subscribe((values) => {
+      console.log(values);
+    });
+
+    this.nome.valueChanges.subscribe(value => {
+      if (value && value.length > 3) {
+        this.email.setValue(`${value}@empresa.com`);
+      }
     });
   }
 
@@ -58,7 +70,7 @@ export class EditarComponent implements OnInit {
 
   enviar(): void {
     if (this.formulario.valid) {
-      this.medicoService.salvar(this.medico)
+      this.medicoService.salvar(this.formulario.value)
         .subscribe(() => this.voltar());
     }
   }

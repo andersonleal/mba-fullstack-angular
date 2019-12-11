@@ -5,8 +5,24 @@
     <button mat-icon-button color="primary" routerLink="novo">
       <mat-icon matTooltip="Cadastrar">add</mat-icon>
     </button>
+    <button mat-raised-button routerLink="pacientes">
+      pacientes
+    </button>
+
   </mat-toolbar-row>
 </mat-toolbar>
+
+
+<!--<app-diretiva-exemplo></app-diretiva-exemplo>-->
+<!--<app-pipe-exemplo [medicos]="medicos"></app-pipe-exemplo>-->
+<!--<br>-->
+
+<app-ng-content-componet>
+  <div header>header</div>
+  <div class="menu">menu</div>
+  <div conteudo>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur dignissimos eum exercitationem expedita facere harum magni necessitatibus, nihil nisi non, pariatur porro tempora? Ducimus necessitatibus provident quis, quod soluta voluptas.</div>
+  <div footer>footer</div>
+</app-ng-content-componet>
 
 <div class="content">
   <table mat-table [dataSource]="medicos" class="mat-elevation-z8">

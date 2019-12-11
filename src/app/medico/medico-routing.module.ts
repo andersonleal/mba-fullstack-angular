@@ -14,7 +14,7 @@ const routes: Routes = [
     component: EditarComponent,
     path: 'novo',
     resolve: {
-      medico: MedicoResolve
+      medico: MedicoResolve,
     }
   },
   {

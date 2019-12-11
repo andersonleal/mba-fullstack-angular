@@ -10,4 +10,6 @@ export class MedicoService extends BaseApiService<Medico> {
   constructor(httpClient: HttpClient) {
     super(httpClient, 'medicos');
   }
+
+
 }

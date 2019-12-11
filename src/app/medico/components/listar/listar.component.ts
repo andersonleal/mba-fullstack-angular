@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MedicoService} from '../../service/medico.service';
 import {Router} from '@angular/router';
 import {Medico} from '../../model/medico';
+import {Subscription} from 'rxjs/src/internal/Subscription';
 
 @Component({
   selector: 'app-listar',
   templateUrl: './listar.component.html',
   styleUrls: ['./listar.component.scss']
 })
-export class ListarComponent implements OnInit {
+export class ListarComponent implements OnInit, OnDestroy {
   public medicos: Medico[];
   colunas: string[] = ['nome', 'email', 'crm', 'acoes'];
 
@@ -19,8 +20,12 @@ export class ListarComponent implements OnInit {
     this.atualizar();
   }
 
+  ngOnDestroy(): void {
+  }
+
   atualizar(): void {
-    this.medicoService.listar().subscribe(medicos => {
+    this.medicoService.listar()
+      .subscribe(medicos => {
       this.medicos = medicos;
     });
   }
@@ -30,6 +35,8 @@ export class ListarComponent implements OnInit {
   }
 
   remover({ id }: Medico): void {
-    this.medicoService.remover(id).subscribe(() => this.atualizar());
+    this.medicoService.remover(id)
+      .subscribe(() => this.atualizar());
   }
+
 }

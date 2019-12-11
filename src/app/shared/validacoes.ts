@@ -8,6 +8,6 @@ export class Validacoes {
       return null;
     }
 
-    return { emailInvalido: true };
+    return { emailInvalido: {descricao: 'faltou .com'} };
   }
 }
